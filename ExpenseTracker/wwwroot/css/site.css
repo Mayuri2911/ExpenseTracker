@@ -1,0 +1,368 @@
+﻿/*html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+body {
+    background-color: #121212;*/ /* Dark background */
+    /*color: #ffffff;*/ /* Light text */
+/*}
+.e-dark{
+    font-size: x-large;
+}*/
+
+/* Light-colored outline for ejs-textbox */
+/*.light-outline .e-input {
+    border: 1px solid #ced4da !important;*/ /* Light gray border */
+    /*border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    background-color: #fff;
+}
+
+    .light-outline .e-input:focus {
+        border-color: #a8b5c3 !important;*/ /* Slightly darker on focus */
+        /*box-shadow: 0 0 0 0.2rem rgba(168, 181, 195, 0.25);
+    }*/
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+html, body {
+   
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* disables scrolling */
+}
+
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+body {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+}
+
+.e-dark {
+    font-size: x-large;
+}
+/* Wrapper */
+.light-outline.e-control-wrapper.e-textbox {
+    border: 1px solid #f5f5dc !important;
+    border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    background-color: #fff !important;
+}
+
+    /* Inner input */
+    .light-outline.e-control-wrapper.e-textbox input.e-input {
+        border: none !important;
+        background: transparent !important;
+        color: #000; /* visible text in light box */
+    }
+
+    /* Focus effect */
+    .light-outline.e-control-wrapper.e-textbox.e-input-focus {
+        border-color: #f5f5dc !important;
+        box-shadow: 0 0 0 0.2rem rgba(245, 245, 220, 0.5);
+    }
+/* Parent container for button group */
+.e-btn-group.cust-radio-btn {
+    display: flex;
+    gap: 5px; /* space between buttons */
+    width: 100%;
+}
+
+/* Hide actual radio buttons */
+.cust-radio-btn input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to look like buttons */
+.cust-radio-btn .e-btn {
+    flex: 1; /* make both equal width */
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #f5f5dc;
+    border-radius: 5px;
+    background-color: rgb(34, 43, 51);
+    color: #258cfb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    /* Hover effect */
+    .cust-radio-btn .e-btn:hover {
+        background-color: #1a1a1a;
+        border-color: #0094ff;
+    }
+
+/* Active (checked) state */
+.cust-radio-btn input[type="radio"]:checked + label {
+    background-color: #f5f5dc;
+    color: #0094ff;
+    border: 1px solid #0094ff;
+    font-weight: bold;
+}
+
+/* Optional: subtle shadow for a button look */
+.cust-radio-btn .e-btn:active {
+    transform: scale(0.98);
+}
+.btn-primary {
+    background-color: #0094ff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+    .btn-primary:hover {
+        background-color: #007acc;
+    }
+
+.btn-secondary {
+    background-color: #f5f5dc;
+    color: #0094ff;
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+    .btn-secondary:hover {
+        background-color: #e0e0b0;
+    }
+
+.center-fixed-container {
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center; /* vertical center */
+    min-height: 80vh; /* take most of viewport height */
+}
+
+.widget {
+    background-color: rgb(42, 27, 17);
+    width: 100%;
+    max-width: 600px; /* optional: limit width */
+    padding: 20px;
+    color: white;
+    min-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+/* Primary Button Center Alignment */
+.btn.btn-primary {
+    display: block;
+    margin: 0 auto; /* Centers the button horizontally */
+}
+
+/* Container for button group */
+.action-btn-group {
+    display: flex;
+    gap: 10px; /* spacing between buttons */
+    justify-content: center;
+}
+
+/* Container spacing */
+.action-btn-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* General icon button style */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; /* square button */
+    height: 38px; /* square button */
+    border-radius: 50%; /* circular button */
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Edit button (pencil) */
+.edit-btn {
+    background-color: #0094ff; /* bright blue */
+    border: 1px solid #007acc;
+}
+
+    .edit-btn:hover {
+        background-color: #007acc; /* darker blue on hover */
+        box-shadow: 0 0 8px rgba(0, 148, 255, 0.6);
+    }
+
+/* Delete button (trash) */
+.delete-btn {
+    background-color: #ff4d4f; /* red */
+    border: 1px solid #d9363e;
+}
+
+    .delete-btn:hover {
+        background-color: #d9363e; /* darker red on hover */
+        box-shadow: 0 0 8px rgba(255, 77, 79, 0.6);
+    }
+
+/* Icon sizing inside button */
+.action-btn i {
+    font-size: 1.2rem;
+    pointer-events: none; /* ensures click triggers button, not icon */
+}
+.simple-breadcrumb {
+    font-size: 0.95rem;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+}
+
+    .simple-breadcrumb a {
+        color: #00bfff;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .simple-breadcrumb a:hover {
+            color: #1ec8ff;
+            text-decoration: underline;
+        }
+
+    .simple-breadcrumb i {
+        color: #888;
+    }
+
+    .simple-breadcrumb span {
+        color: #fff;
+        font-weight: 600;
+    }
+
+
+/* Sidebar Styling */
+#SideBar {
+    width: 290px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #12161d;
+    color: white;
+    border :1 px  dashed rgba (75,82,85,0.24);
+    padding:10px  20px;
+}
+.widget {
+    border-radius: 1rem;
+    background-color: #1a222b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 160px; /* ✅ Fixed uniform height */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+    .widget:hover {
+        transform: translateY(-5px);
+    }
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    background-color: #222b33;
+    border-radius: 50%;
+}
+
+    .icon-box i {
+        color: #65da41;
+        font-size: 2rem;
+    }
+
+/* Specific colors for icons */
+.widget.income .icon-box i {
+    color: #65da41; /* green */
+}
+
+.widget.expense .icon-box i {
+    color: #ff4e48; /* red */
+}
+
+.widget.balance .icon-box i {
+    color: #ffa500; /* orange */
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 768px) {
+    .widget {
+        height: auto;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon-box {
+        margin-bottom: 10px;
+    }
+}
+
+/* Adjust main content to avoid overlapping with sidebar */
+.flex-grow-1 {
+    margin-left: 250px;
+}
+
+/* Optional: make the whole body fit nicely */
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+.main-content{
+    margin-left :290px;
+}
