@@ -1,8 +1,8 @@
-﻿@*
+﻿﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData ["isDashBoard"] = true;
+    ViewData["isDashBoard"] = true;
 }
 
 @* Summary for Widget *@
@@ -47,5 +47,112 @@
         </div>
     </div>
 </div>
+<div class="row mt-4 g-4">
+    <!-- Doughnut Chart -->
+    <div class="col-md-6">
+        <div class="widget chart h-100">
+            <div class="p-4 text-center">
+                <h5 class="fw-bold">
+                    <i class="fa fa-pie-chart me-2"></i> Expense By Category
+                </h5>
+            </div>
 
- 
+            <div style="width:100%; height:300px; margin:auto;">
+                <canvas id="donutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spline Chart -->
+    <div class="col-md-6">
+        <div class="widget chart h-100">
+            <div class="p-4 text-center">
+                <h5 class="fw-bold">
+                    <i class="fa fa-line-chart me-2"></i> Income vs Expense (Last 7 Days)
+                </h5>
+            </div>
+
+            <div style="width:100%; height:300px;">
+                <canvas id="splineChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var labels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Labels));
+    var values = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Values));
+    var formattedValues = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.FormattedValues));
+
+    // --- Automatic Unique Color Generator ---
+    function generateColors(count) {
+        let colors = [];
+        for (let i = 0; i < count; i++) {
+            colors.push(`hsl(${Math.floor(Math.random() * 360)}, 70%, 55%)`);
+        }
+        return colors;
+    }
+
+    // --- Doughnut Chart ---
+    new Chart(document.getElementById("donutChart"), {
+        type: "doughnut",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                borderWidth: 1,
+                backgroundColor: generateColors(values.length)   // Dynamic auto-color
+            }]
+        },
+        plugins: [ChartDataLabels],
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "55%",
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "top",
+                    labels: {
+                        font: { weight: "bold" },
+                        usePointStyle: true,
+                    }
+                },
+                datalabels: {
+                    color: "#000",
+                    formatter: (value, ctx) => formattedValues[ctx.dataIndex],
+                    font: { weight: "bold", size: 12 }
+                }
+            }
+        }
+    });
+    new Chart(document.getElementById("splineChart"), {
+        type: "line",
+        data: {
+            labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Days)),
+            datasets: [
+                {
+                    label: "Income",
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Income7)),
+                    borderWidth: 2,
+                    tension: 0.4
+                },
+                {
+                    label: "Expense",
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Expense7)),
+                    borderWidth: 2,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+</script>

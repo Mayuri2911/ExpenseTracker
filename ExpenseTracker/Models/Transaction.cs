@@ -12,7 +12,7 @@ namespace ExpenseTracker.Models
         public int TransactionId { get; set; }
 
         [ForeignKey("Categories")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Categories? Categories { get; set; }
         public int Amount { get; set; }
         [Column(TypeName = "nvarchar(70)")]

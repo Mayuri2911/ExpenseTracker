@@ -1,4 +1,4 @@
-﻿/*html {
+﻿﻿ /*html {
   font-size: 14px;
 }
 
@@ -32,25 +32,23 @@ body {
 
 body {
     background-color: #121212;*/ /* Dark background */
-    /*color: #ffffff;*/ /* Light text */
+/*color: #ffffff;*/ /* Light text */
 /*}
 .e-dark{
     font-size: x-large;
 }*/
-
 /* Light-colored outline for ejs-textbox */
 /*.light-outline .e-input {
     border: 1px solid #ced4da !important;*/ /* Light gray border */
-    /*border-radius: 4px;
+/*border-radius: 4px;
     padding: 0.375rem 0.75rem;
     background-color: #fff;
 }
 
     .light-outline .e-input:focus {
         border-color: #a8b5c3 !important;*/ /* Slightly darker on focus */
-        /*box-shadow: 0 0 0 0.2rem rgba(168, 181, 195, 0.25);
+/*box-shadow: 0 0 0 0.2rem rgba(168, 181, 195, 0.25);
     }*/
-
 html {
     font-size: 14px;
 }
@@ -64,8 +62,8 @@ html {
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+
 html, body {
-   
     margin: 0;
     padding: 0;
     overflow: hidden; /* disables scrolling */
@@ -152,6 +150,7 @@ body {
 .cust-radio-btn .e-btn:active {
     transform: scale(0.98);
 }
+
 .btn-primary {
     background-color: #0094ff;
     border: none;
@@ -188,7 +187,7 @@ body {
     max-width: 600px; /* optional: limit width */
     padding: 20px;
     color: white;
-    min-height: 400px;
+    min-height: 200px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
@@ -256,6 +255,7 @@ body {
     font-size: 1.2rem;
     pointer-events: none; /* ensures click triggers button, not icon */
 }
+
 .simple-breadcrumb {
     font-size: 0.95rem;
     color: #bbb;
@@ -296,9 +296,10 @@ body {
     left: 0;
     background-color: #12161d;
     color: white;
-    border :1 px  dashed rgba (75,82,85,0.24);
-    padding:10px  20px;
+    border: 1 px dashed rgba (75,82,85,0.24);
+    padding: 10px 20px;
 }
+
 .widget {
     border-radius: 1rem;
     background-color: #1a222b;
@@ -306,7 +307,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 160px; /* ✅ Fixed uniform height */
+    height: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
@@ -363,6 +364,51 @@ body {
     margin: 0;
     overflow-x: hidden;
 }
-.main-content{
-    margin-left :290px;
+
+.main-content {
+    margin-left: 200px;
+}
+
+.summary-card {
+    background: #1c232b;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 0 10px #00000050;
+}
+
+.chart-card {
+    background: #1c232b;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 0 10px #00000050;
+}
+
+.chart-container {
+    height: 300px;
+}
+
+.top-title {
+    background: #ffffff;
+    padding: 20px;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+}
+.dashboard-container {
+    padding-left: 260px; /* Same as sidebar width */
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.dashboard-card {
+    background: #111827;
+    border-radius: 15px;
+    padding: 30px;
+    min-height: 160px;
+}
+
+.chart-box {
+    background: #111827;
+    border-radius: 15px;
+    padding: 30px;
 }

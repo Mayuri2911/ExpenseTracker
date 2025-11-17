@@ -44,12 +44,47 @@ namespace ExpenseTracker.Controllers
             ViewBag.TotalIncome = string.Format(cultureInfo, "{0:C0}", TotalIncome);
             ViewBag.TotalExpense = string.Format(cultureInfo, "{0:C0}", TotalExpense);
             ViewBag.TotalBalance = string.Format(cultureInfo, "{0:C0}", TotalBalance);
-             //   TotalBalance.ToString("C0");
+            //   TotalBalance.ToString("C0");
+
+            var chartData = selectedtransactions
+      .Where(i => i.Categories.Type == "Expense")
+      .GroupBy(j => j.Categories.CategoryId)
+      .Select(k => new
+      {
+          CategoryTitleWithIcon = k.First().CategoryTitleWithIcon,
+          Amount = k.Sum(j => j.Amount),
+          FormattedAmount = k.Sum(j => j.Amount).ToString("C0")
+      })
+      .ToList();
+
+            ViewBag.CategoryTitleWithIcon = chartData.Select(x => x.CategoryTitleWithIcon).ToList();
+            ViewBag.Values = chartData.Select(x => x.Amount).ToList();
+            ViewBag.FormattedValues = chartData.Select(x => x.FormattedAmount).ToList();
 
 
+            // --- Income vs Expense for last 7 days ---
+            var last7days = Enumerable.Range(0, 7)
+                .Select(i => StartDate.AddDays(i))
+                .ToList();
+
+            var incomeData = last7days.Select(day =>
+                selectedtransactions.Where(t => t.Date.Date == day.Date && t.Categories.Type == "Income")
+                .Sum(t => t.Amount)
+            ).ToList();
+
+            var expenseData = last7days.Select(day =>
+                selectedtransactions.Where(t => t.Date.Date == day.Date && t.Categories.Type == "Expense")
+                .Sum(t => t.Amount)
+            ).ToList();
+
+            ViewBag.Days = last7days.Select(d => d.ToString("dd MMM")).ToList();
+            ViewBag.Income7 = incomeData;
+            ViewBag.Expense7 = expenseData;
 
 
             return View();
         }
+
+
     }
 }
