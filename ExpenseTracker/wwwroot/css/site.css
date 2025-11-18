@@ -288,127 +288,156 @@ body {
 
 
 /* Sidebar Styling */
+/* Allow scrolling */
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Sidebar */
 #SideBar {
-    width: 290px;
+    width: 260px;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     background-color: #12161d;
     color: white;
-    border: 1 px dashed rgba (75,82,85,0.24);
-    padding: 10px 20px;
+    padding: 20px;
 }
 
+/* Main Dashboard Layout */
+.dashboard-container {
+    padding-left: 280px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+/* Widgets */
 .widget {
-    border-radius: 1rem;
-    background-color: #1a222b;
-    color: #fff;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    background-color: #1a222b;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: 0.3s;
 }
 
     .widget:hover {
         transform: translateY(-5px);
     }
 
+/* Icon wrapper */
 .icon-box {
-    width: 80px;
-    height: 80px;
-    background-color: #222b33;
+    width: 70px;
+    height: 70px;
+    background: #222b33;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     .icon-box i {
-        color: #65da41;
-        font-size: 2rem;
+        font-size: 32px;
     }
 
-/* Specific colors for icons */
-.widget.income .icon-box i {
-    color: #65da41; /* green */
+/* Colors */
+.widget.income i {
+    color: #65da41;
 }
 
-.widget.expense .icon-box i {
-    color: #ff4e48; /* red */
+.widget.expense i {
+    color: #ff4e48;
 }
 
-.widget.balance .icon-box i {
-    color: #ffa500; /* orange */
+.widget.balance i {
+    color: #ffa500;
 }
 
-/* Responsive fix for small screens */
-@media (max-width: 768px) {
-    .widget {
-        height: auto;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .icon-box {
-        margin-bottom: 10px;
-    }
-}
-
-/* Adjust main content to avoid overlapping with sidebar */
-.flex-grow-1 {
-    margin-left: 250px;
-}
-
-/* Optional: make the whole body fit nicely */
-body {
-    margin: 0;
-    overflow-x: hidden;
-}
-
-.main-content {
-    margin-left: 200px;
-}
-
-.summary-card {
-    background: #1c232b;
-    border-radius: 12px;
+/* Chart / Card Containers */
+.chart-box,
+.dashboard-card {
+    background: #111827;
     padding: 25px;
+    border-radius: 15px;
+    color: white;
     box-shadow: 0 0 10px #00000050;
 }
 
-.chart-card {
-    background: #1c232b;
+/* Responsive Fix */
+@media (max-width: 768px) {
+    #SideBar {
+        width: 200px;
+    }
+
+    .dashboard-container {
+        padding-left: 210px;
+    }
+
+    .widget {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+.chart-box {
+    background: #111827;
     border-radius: 15px;
     padding: 25px;
+    color: white;
     box-shadow: 0 0 10px #00000050;
 }
 
 .chart-container {
-    height: 300px;
+    height: 260px; /* fixed chart height */
+    width: 100%;
 }
 
-.top-title {
-    background: #ffffff;
-    padding: 20px;
-    color: #000;
-    font-size: 20px;
-    font-weight: bold;
+    .chart-container canvas {
+        height: 100% !important;
+        width: 100% !important;
+    }
+#categoryList {
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
 }
-.dashboard-container {
-    padding-left: 260px; /* Same as sidebar width */
-    padding-right: 20px;
-    padding-top: 20px;
+
+.category-tag {
+    background: #1f2937;
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
+.row.same-height {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.dashboard-card {
+    flex: 1 1 0;
+}
+.same-height {
+    display: flex;
+    align-items: stretch; /* makes both columns same height */
+}
+
+    .same-height .col-md-6 {
+        display: flex;
+    }
 
 .dashboard-card {
     background: #111827;
     border-radius: 15px;
     padding: 30px;
-    min-height: 160px;
-}
-
-.chart-box {
-    background: #111827;
-    border-radius: 15px;
-    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* needed for table layout */
 }

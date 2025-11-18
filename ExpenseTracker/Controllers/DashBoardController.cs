@@ -82,6 +82,12 @@ namespace ExpenseTracker.Controllers
             ViewBag.Expense7 = expenseData;
 
 
+            ViewBag.RecentTransaction = await _context.Transactions
+           .Include(i => i.Categories)
+           .OrderByDescending(j => j.Date)
+           .Take(5)
+           .ToListAsync();
+
             return View();
         }
 
