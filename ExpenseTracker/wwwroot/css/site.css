@@ -441,3 +441,31 @@ html, body {
     display: flex;
     flex-direction: column; /* needed for table layout */
 }
+/* Correct layout behavior */
+.app-wrapper {
+    display: flex;
+}
+
+/* Sidebar already fixed in _SideBar.cshtml */
+.sidebar {
+    width: 260px;
+}
+
+/* Main content sits next to sidebar */
+.main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    transition: 0.3s;
+}
+
+/* When collapsed */
+.sidebar.collapsed ~ .main-content {
+    margin-left: 80px !important;
+    width: calc(100% - 80px);
+}
+
+/* REMOVE old conflicting dashboard spacing */
+.dashboard-container {
+    padding-left: 0 !important;
+}
+

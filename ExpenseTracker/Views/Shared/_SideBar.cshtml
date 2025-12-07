@@ -1,20 +1,322 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    var menuItems = new dynamic[]
+    {
+        new {
+            Text = "General",
+            Separator = true,
+            Icon = "bi bi-dot",
+            Url ="",
+            Items = new dynamic[] {}
+        },
+        new {
+            Text = "Dashboard",
+            Icon = "bi bi-speedometer2",
+            Url = "/DashBoard/Index",
+            Items = new[] {
+                new { Text = "Open", Url = "/DashBoard/Index" },
+                new { Text = "Exit", Url = "/DashBoard/Index" }
+            }
+        },
+        new {
+            Text = "Categories",
+            Icon = "bi bi-folder",
+            Url = "/Categories/Index",
+            Items = new[] {
+                new { Text = "Open", Url = "/Categories/Index" },
+                new { Text = "Exit", Url = "/DashBoard/Index" }
+            }
+        },
+        new {
+            Text = "Transaction",
+            Icon = "bi bi-arrow-left-right",
+            Url = "/Transactions/Index",
+            Items = new[] {
+                new { Text = "Open", Url = "/Transactions/Index" },
+                new { Text = "Exit", Url = "/DashBoard/Index" }
+            }
+        },
+        new {
+            Text = "Extras",
+            Separator = true,
+            Icon = "bi bi-dot",
+             Url ="",
+            Items = new dynamic[] {}
+        },
+        new {
+            Text = "Reports",
+            Icon = "bi bi-bar-chart-line",
+            Url = "#",
+            Items = new[] {
+                new { Text = "Open", Url = "#" },
+                new { Text = "Exit", Url = "#" }
+            }
+        },
+        new {
+            Text = "Setting",
+            Icon = "bi bi-gear",
+            Url = "#",
+            Items = new[] {
+                new { Text = "Open", Url = "#" },
+                new { Text = "Exit", Url = "#" }
+            }
+        }
+    };
 }
+
 <style>
+    /* FULL SIDEBAR */
     .sidebar {
-        width: 290px;
+        width: 260px;
         height: 100vh;
-        background-color: #222;
-        color: white;
+        background: #1e1e1e; /* dark grey or #000 if you want pure black */
+        color: #fff;
+        border-right: 1px solid #e6e6e6;
         position: fixed;
         left: 0;
         top: 0;
-        padding: 20px;
+        padding: 15px;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        transition: 0.3s;
+        overflow: hidden;
     }
+
+        /* COLLAPSED SIDEBAR */
+        .sidebar.collapsed {
+            width: 80px !important;
+        }
+
+    /* TOGGLE BUTTON */
+    .sidebar-toggle {
+        position: absolute;
+        top: 20px;
+        right: -15px;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* LOGO */
+    .logo-wrapper {
+        text-align: left;
+        margin-bottom: 20px;
+        transition: 0.3s;
+        margin-top: 0 !important;
+        padding-top: 10px !important;
+    }
+
+        .logo-wrapper img {
+            width: 55px;
+            transition: 0.3s;
+        }
+
+    .sidebar.collapsed .logo-wrapper img {
+        width: 35px !important;
+    }
+
+    /* PROFILE */
+    .profile-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        transition: 0.3s;
+    }
+
+    .profile-pic {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+
+    .titles {
+        margin-left: 12px;
+    }
+
+    /* HIDE TEXT ON COLLAPSE */
+    .sidebar.collapsed .titles,
+    .sidebar.collapsed .menu-text {
+        display: none !important;
+    }
+
+    /* MENU ITEMS */
+    .menu-item {
+        margin-bottom: 10px;
+    }
+
+    .main-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #444;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .main-link:hover {
+            background: #2e2e2e; /* darker shade */
+            color: #00ff7f !important; /* neon green */
+        }
+
+
+    .menu-icon {
+        font-size: 20px;
+        width: 30px;
+    }
+
+    /* SUBMENU */
+    .submenu {
+        display: none;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+
+        .submenu.open {
+            display: block;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 5px 0;
+            text-decoration: none;
+            color: #777;
+        }
+
+            .submenu a:hover {
+                color: #00ff7f !important;
+            }
+
+
+    /* HIDE SUBMENU IN COLLAPSED MODE */
+    .sidebar.collapsed .submenu {
+        display: none !important;
+    }
+
+    .menu-text,
+    .profile-wrapper h6,
+    .profile-wrapper small,
+    .main-link,
+    .submenu a {
+        color: #fff !important;
+    }
+    /* SECTION HEADERS (General, Extras) */
+    .section-header {
+        margin: 15px 0 8px 0;
+    }
+
+    .section-text {
+        color: #0f8a47; /* dark green */
+        font-size: 25px; /* EXACT same as main menu */
+        font-weight: 600;
+        padding: 10px 10px; /* EXACT same padding as main-link */
+        display: block;
+        line-height: 20px; /* Fix vertical spacing */
+    }
+
+        /* No hover */
+        .section-text:hover {
+            color: #0f8a47 !important;
+            background: transparent !important;
+        }
+
+    /* Disable click */
+    .section-text {
+        pointer-events: none !important;
+    }
+
+    /* Remove extra icon spacing */
+    .section-header .menu-icon {
+        display: none !important;
+    }
+
+
+
 </style>
-<div id="SideBar" class="sidebar">
-    <!-- Sidebar content -->
+
+<div id="sidebar" class="sidebar">
+    <div id="toggleSidebar" class="sidebar-toggle" onclick="toggleSidebar()">
+        <i id="toggleIcon" class="bi bi-chevron-left"></i>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo-wrapper">
+        <img src="~/images/logo.png" />
+    </div>
+
+    <!-- PROFILE -->
+    <div class="profile-wrapper">
+        <img class="profile-pic" src="~/images/profile.png" />
+        <div class="titles">
+            <h6 class="mb-0">Wallet App</h6>
+            <small>Ashton Cox</small>
+        </div>
+    </div>
+
+    <!-- MENU LIST -->
+    @foreach (var item in menuItems)
+    {
+        bool isSectionHeader = item.Text == "General" || item.Text == "Extras";
+        string id = item.Text.Replace(" ", "").Replace("&", "").Replace("/", "").Replace("-", "");
+
+        <div class="menu-item @(isSectionHeader ? "section-header" : "")">
+            @if (isSectionHeader)
+            {
+                <div class="section-text">@item.Text</div>
+            }
+            else
+            {
+                <a class="main-link" @(item.Items.Length > 0 ? $"onclick=toggleMenu('{id}')" : $"href='{item.Url}'")>
+                    <span class="menu-icon"><i class="@item.Icon"></i></span>
+                    <span class="menu-text">@item.Text</span>
+
+                    @if (item.Items.Length > 0)
+                    {
+                        <i class="bi bi-caret-down-fill"></i>
+                    }
+                </a>
+
+                @if (item.Items.Length > 0)
+                {
+                    <div id="submenu-@id" class="submenu">
+                        @foreach (var sub in item.Items)
+                        {
+                            <a href="@sub.Url">@sub.Text</a>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    }
+
 </div>
+
+<script>
+    function toggleMenu(id) {
+        const menu = document.getElementById("submenu-" + id);
+        menu.classList.toggle("open");
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const icon = document.getElementById("toggleIcon");
+
+        sidebar.classList.toggle("collapsed");
+
+        if (sidebar.classList.contains("collapsed")) {
+            icon.classList.remove("bi-chevron-left");
+            icon.classList.add("bi-chevron-right");
+        } else {
+            icon.classList.remove("bi-chevron-right");
+            icon.classList.add("bi-chevron-left");
+        }
+    }
+</script>
