@@ -22,9 +22,9 @@ namespace ExpenseTracker.Controllers
         // GET: Transactions
         public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
-           
-          
-            int totalItems = await _context.Categories.CountAsync();
+
+
+            int totalItems = await _context.Transactions.CountAsync();
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
@@ -35,7 +35,7 @@ namespace ExpenseTracker.Controllers
             var transaction = await _context.Transactions
                .Include(t => t.Categories)   
               .OrderByDescending(t => t.Date)
-                .OrderBy(c => c.CategoryId)
+                .ThenBy(c => c.CategoryId)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync(); ;

@@ -1,113 +1,96 @@
 ﻿@model ExpenseTracker.Models.Transaction
 
 @{
-   ViewData["Title"] = "AddOrEdit";
+    ViewData["Title"] = "AddOrEdit";
     ViewData["PageTitle"] = Model.TransactionId == 0 ? "Create New Transaction" : "Edit Transaction";
 }
-<h5 class="text-center text-light">@ViewData["PageTitle"]</h5>
 
-<hr />
+<h4 class="text-light text-center mb-4">@ViewData["PageTitle"]</h4>
 
+<div class="container mt-3">
+    <div class="row justify-content-center">
 
+        <!-- FORM CARD -->
+        <div class="col-md-6">
+            <div class="card bg-dark text-light shadow-sm p-4">
 
-<div class="center-fixed-container">
-    <div class="row justify-content-center align-items-stretch g-4 w-100" style="max-width: 900px;">
-
-        <!-- Left Side: Form Widget -->
-        <div class="col-md-6 d-flex">
-            <div class="widget p-5 shadow rounded flex-fill">
                 <form asp-action="AddOrEdit">
-                    <!-- Validation summary -->
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                 
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
                     <input type="hidden" name="TransactionId" value="@Model.TransactionId" />
-                   
 
-
+                    <!-- Date -->
                     <div class="mb-3">
                         <label for="Date" class="form-label">Date</label>
                         <div class="input-group">
-                            <input type="text" id="Date" name="Date" value="@Model.Date.ToString("MMM-dd-yyyy")"
-                                   class="form-control light-outline"
-                                   placeholder="Select date" />
-                            <span class="input-group-text bg-white" id="calendar-icon" style="cursor:pointer;">
+                            <input type="text" id="Date" name="Date"
+                                   value="@Model.Date.ToString("yyyy-MM-dd")"
+                                   class="form-control" />
+                            <span class="input-group-text" id="calendar-icon">
                                 <i class="bi bi-calendar-event"></i>
                             </span>
                         </div>
-                        <span asp-validation-for="Date" class="text-danger"></span>
                     </div>
-                    <!-- Type -->
+
+                    <!-- Category -->
                     <div class="mb-3">
-                        <label asp-for="CategoryId" class="form-label"></label>
-
-                        <select id="CategoryId" asp-for="CategoryId" asp-items=@ViewBag.Categories class="form-control">
-                        </select>
-
+                        <label asp-for="CategoryId" class="form-label">Category</label>
+                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories"
+                                class="form-control"></select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
 
-
-
+                    <!-- Amount -->
                     <div class="mb-3">
-                        <label for="Amount" class="form-label">Amount</label>
-                        <input type="number" id="Amount" name="Amount" class="form-control" value="@Model.Amount" min="0" />
-                        <span asp-validation-for="Amount" class="text-danger"></span>
+                        <label class="form-label">Amount</label>
+                        <input type="number" id="Amount" name="Amount" class="form-control"
+                               value="@Model.Amount" min="0" />
                         <small id="amtText" class="text-muted"></small>
                     </div>
 
+                    <!-- Note -->
                     <div class="mb-3">
-                        <label for="Note" class="form-label">Note</label>
-                        <textarea id="Note" name="Note"
-                                  class="form-control light-outline"
-                                  rows="3" placeholder="Enter your note here..."></textarea>
-                        <span asp-validation-for="Note" class="text-danger"></span>
+                        <label class="form-label">Note</label>
+                        <textarea id="Note" name="Note" rows="2"
+                                  class="form-control"
+                                  placeholder="Enter your note...">@Model.Note</textarea>
                     </div>
-                   
 
-
-
-                    <!-- Submit Button -->
-                    <div class="mb-3 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success px-4">Submit</button>
+                    <div class="text-center">
+                        <button class="btn btn-success">Submit</button>
                     </div>
+
                 </form>
             </div>
         </div>
 
-        <!-- Right Side: Icon Widget -->
-        <div class="col-md-4 d-flex">
-            <div class="widget p-5 shadow rounded flex-fill d-flex justify-content-center align-items-center"
-                 style="background-color: rgb(42, 27, 17);">
-                <i class="fa-solid fa-money-bill-transfer" fa-3x text-white"></i>
+        <!-- ICON CARD -->
+        <div class="col-md-3 d-flex">
+            <div class="card bg-dark shadow-sm d-flex justify-content-center align-items-center w-100"
+                 style="min-height: 230px;">
+                <i class="fa-solid fa-money-bill-transfer fa-4x text-success"></i>
             </div>
         </div>
+
     </div>
 </div>
+
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>
-        $(function () {
-            // Initialize datepicker
-            $('#Date').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true,
-                todayHighlight: true,
-                orientation: "bottom auto"
-            });
-
-            // Calendar icon click triggers datepicker
-            $('#calendar-icon').click(function () {
-                $('#Date').focus();
-            });
+        $('#Date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
         });
+
+        $('#calendar-icon').click(() => $('#Date').focus());
 
         Amount.oninput = () => {
             amtText.textContent = Amount.value
                 ? '₹' + Number(Amount.value).toLocaleString('en-IN')
                 : '';
         };
-
     </script>
-
 }

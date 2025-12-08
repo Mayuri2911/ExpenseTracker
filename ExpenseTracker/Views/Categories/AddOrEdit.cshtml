@@ -1,76 +1,77 @@
 ﻿@model ExpenseTracker.Models.Categories
 
 @{
-    ViewData["PageTitle"] = Model.CategoryId == 0 ? "Create New Category" : "Edit Category";
+    ViewData["PageTitle"] = Model.CategoryId == 0
+        ? "Create New Category"
+        : "Edit Category";
 }
 
-<h5 class="text-center text-light">@ViewData["PageTitle"]</h5>
-<hr />
+<div class="page-wrapper">
 
+    <!-- Page Title -->
+    <div class="text-center mb-4">
+        <h3 class="text-light">@ViewData["PageTitle"]</h3>
+        <hr class="text-secondary" />
+    </div>
 
-<hr/>
+    <!-- FORM + ICON SIDE BY SIDE -->
+    <div class="row justify-content-center g-4">
 
-<div class="center-fixed-container">
-    <div class="row justify-content-center align-items-stretch g-4 w-100" style="max-width: 900px;">
+        <!-- Left Side – FORM -->
+        <div class="col-lg-5 col-md-6">
+            <div class="card bg-dark border-0 shadow p-4 rounded">
 
-        <!-- Left Side: Form Widget -->
-        <div class="col-md-6 d-flex">
-            <div class="widget p-5 shadow rounded flex-fill">
                 <form asp-action="AddOrEdit">
-                    <!-- Validation summary -->
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                    <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+
+                    <input type="hidden" asp-for="CategoryId" />
 
                     <!-- Type -->
-                    <div class="mb-3 text-center">
-                        <div class="e-btn-group cust-radio-btn">
-                            <input type="radio" id="radioleft" name="Type" value="Expense"
-                            @(Model.Type == "Expense" ? "checked" : "") />
-                            <label class="e-btn" for="radioleft">Expense</label>
+                    <div class="mb-4 text-center">
+                        <div class="btn-group">
 
-                            <input type="radio" id="radiomiddle" name="Type" value="Income"
-                            @(Model.Type == "Income" ? "checked" : "") />
-                            <label class="e-btn" for="radiomiddle">Income</label>
+                            <input type="radio" class="btn-check" id="exp" name="Type" value="Expense"
+                            @(Model.Type == "Expense" ? "checked" : "")>
+                            <label class="btn btn-outline-warning" for="exp">Expense</label>
+
+                            <input type="radio" class="btn-check" id="inc" name="Type" value="Income"
+                            @(Model.Type == "Income" ? "checked" : "")>
+                            <label class="btn btn-outline-info" for="inc">Income</label>
+
                         </div>
-                        <span asp-validation-for="Type" class="text-danger"></span>
+                        <span asp-validation-for="Type" class="text-danger small"></span>
                     </div>
 
                     <!-- Title -->
                     <div class="mb-3">
-                        <label for="Title" class="form-label">Title</label>
-                        <input type="text" id="Title" name="Title" placeholder="Enter Title"
-                               value="@Model.Title" class="form-control light-outline" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <label class="form-label text-light">Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="Enter Title" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
                     </div>
 
                     <!-- Icon -->
                     <div class="mb-3">
-                        <label for="Icon" class="form-label">Icon</label>
-                        <input type="text" id="Icon" name="Icon" value="@Model.Icon" class="form-control light-outline" />
-                        <span asp-validation-for="Icon" class="text-danger"></span>
+                        <label class="form-label text-light">Icon</label>
+                        <input asp-for="Icon" class="form-control" placeholder="Enter Icon (Ex: fa-solid fa-car)" />
+                        <span asp-validation-for="Icon" class="text-danger small"></span>
                     </div>
 
-                    <!-- Submit Button -->
-                    <div class="mb-3 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success px-4">Submit</button>
+                    <!-- Submit -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success px-4 py-2">Submit</button>
                     </div>
+
                 </form>
             </div>
         </div>
 
-        <!-- Right Side: Icon Widget -->
-        <div class="col-md-4 d-flex">
-            <div class="widget p-5 shadow rounded flex-fill d-flex justify-content-center align-items-center"
-                 style="background-color: rgb(42, 27, 17);">
-                <i class="fa-solid fa-shapes fa-3x text-white"></i>
+        <!-- Right Side – ICON PREVIEW -->
+        <div class="col-lg-3 col-md-4 d-flex">
+            <div class="card bg-secondary shadow rounded flex-fill d-flex justify-content-center align-items-center p-4"
+                 style="min-height: 270px;">
+                <i class="fa-solid fa-shapes fa-4x text-white"></i>
             </div>
         </div>
+
     </div>
 </div>
 
-@* @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
- *@
