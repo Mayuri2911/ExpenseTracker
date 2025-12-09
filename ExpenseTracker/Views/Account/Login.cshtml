@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    body {
+        background-color: #1e1e1e !important;
+    }
+
+    .login-container {
+        max-width: 450px;
+        margin: 60px auto;
+        padding: 30px;
+        background: #2b2b2b;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+        color: white;
+    }
+
+        .login-container h2 {
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+    .form-control {
+        background-color: #ffffff !important;
+        color: #000 !important;
+        border-radius: 6px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .btn-login {
+        background-color: #0f8a47;
+        color: white;
+        height: 45px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: 0.3s;
+        border: none;
+    }
+
+        .btn-login:hover {
+            background-color: #0c6a38;
+        }
+
+    .auth-link {
+        color: #00bfff !important;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+        .auth-link:hover {
+            text-decoration: underline;
+        }
+
+    .alert-success {
+      
+        color: Red;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+
+    .alert-danger {
+      
+        color: red;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="login-container">
+
+    <h2 class="text-center">Login</h2>
+
+    @* Show registration success message *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-success text-center">@TempData["Success"]</div>
+    }
+
+    @* Show login error *@
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert-danger text-center">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label text-light">Email</label>
+            <input type="email" name="email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-light">Password</label>
+            <input type="password" name="password" class="form-control" required />
+        </div>
+
+        <button class="btn btn-login w-100 mt-3">Login</button>
+
+        <div class="text-center mt-3">
+            <a href="/Account/Register" class="auth-link">New user? Register here</a>
+        </div>
+    </form>
+
+</div>

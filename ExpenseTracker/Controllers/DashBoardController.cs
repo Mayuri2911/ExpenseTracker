@@ -1,10 +1,13 @@
 ﻿using ExpenseTracker.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace ExpenseTracker.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class DashBoardController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -15,6 +18,8 @@ namespace ExpenseTracker.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
+
 
             DateTime StartDate = DateTime.Today.AddDays(-6);
             DateTime EndDate = DateTime.Today;

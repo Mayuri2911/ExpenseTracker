@@ -22,7 +22,7 @@ namespace ExpenseTracker.Controllers
         // GET: Categories
         public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
-           
+
             int totalItems = await _context.Categories.CountAsync();
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
@@ -62,7 +62,7 @@ namespace ExpenseTracker.Controllers
             return View(categories);
         }
 
-        public async Task<IActionResult> AddOrEdit(int id=0)
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
                 return View(new Categories());
@@ -112,7 +112,7 @@ namespace ExpenseTracker.Controllers
             return View(categories);
         }
 
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Title,Icon,Type")] Categories categories)

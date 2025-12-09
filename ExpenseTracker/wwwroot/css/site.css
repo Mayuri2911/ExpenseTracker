@@ -66,7 +66,7 @@ html {
 html, body {
     margin: 0;
     padding: 0;
-  overflow-y: auto; 
+    overflow-y: auto;
 }
 
 
@@ -382,6 +382,7 @@ html, body {
         text-align: center;
     }
 }
+
 .chart-box {
     background: #111827;
     border-radius: 15px;
@@ -399,6 +400,7 @@ html, body {
         height: 100% !important;
         width: 100% !important;
     }
+
 #categoryList {
     font-size: 14px;
     display: flex;
@@ -416,6 +418,7 @@ html, body {
     align-items: center;
     gap: 6px;
 }
+
 .row.same-height {
     display: flex;
     flex-wrap: nowrap;
@@ -424,6 +427,7 @@ html, body {
 .dashboard-card {
     flex: 1 1 0;
 }
+
 .same-height {
     display: flex;
     align-items: stretch; /* makes both columns same height */

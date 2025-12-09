@@ -31,9 +31,9 @@ namespace ExpenseTracker.Controllers
             if (page > totalPages) page = totalPages;
             if (page < 1) page = 1;
 
-  
+
             var transaction = await _context.Transactions
-               .Include(t => t.Categories)   
+               .Include(t => t.Categories)
               .OrderByDescending(t => t.Date)
                 .ThenBy(c => c.CategoryId)
                 .Skip((page - 1) * pageSize)
@@ -42,8 +42,8 @@ namespace ExpenseTracker.Controllers
 
             ViewData["CurrentPage"] = page;
             ViewData["TotalPages"] = totalPages;
-         //   var transaction = _context.Transactions;
-            return View( transaction);
+            //   var transaction = _context.Transactions;
+            return View(transaction);
         }
 
         [HttpGet]
@@ -93,7 +93,7 @@ namespace ExpenseTracker.Controllers
                 return NotFound();
 
             var transaction = await _context.Transactions
-               // .Include(t => t.Categories)
+                // .Include(t => t.Categories)
                 .FirstOrDefaultAsync(t => t.TransactionId == id);
 
             if (transaction == null)
@@ -104,7 +104,7 @@ namespace ExpenseTracker.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-   
+
         [NonAction]
         public void PrepopulateCategories(int? selectedCategoryId = null)
         {
@@ -116,14 +116,14 @@ namespace ExpenseTracker.Controllers
             {
                 CategoryId = 0,
                 Title = "Select Category",
-                Icon = "" 
+                Icon = ""
             };
             categoriesCollection.Insert(0, defaultCategory);
-          
+
             ViewBag.Categories = new SelectList(
-                categoriesCollection,  
-                "CategoryId",           
-                "TitleWithIcon",      
+                categoriesCollection,
+                "CategoryId",
+                "TitleWithIcon",
                 selectedCategoryId      // selected value
             );
         }

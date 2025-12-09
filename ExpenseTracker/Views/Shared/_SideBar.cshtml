@@ -1,4 +1,15 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var user = HttpContextAccessor.HttpContext.User;
+
+    var loggedUser = user.Identity.IsAuthenticated
+        ? user.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Name)?.Value
+        : "Guest User";
+}
+
+
+@{
     var menuItems = new dynamic[]
     {
         new {
@@ -70,7 +81,6 @@
         height: 100vh;
         background: #1e1e1e; /* dark grey or #000 if you want pure black */
         color: #fff;
-    
         position: fixed;
         left: 0;
         top: 0;
@@ -184,7 +194,7 @@
     /* SUBMENU */
     .submenu {
         display: none;
-        margin-left: 20px;
+        margin-left: 80px;
         margin-top: 5px;
     }
 
@@ -281,15 +291,35 @@
         right: -12px;
     }
 
+    .logout-btn {
+        background: linear-gradient(135deg, #ff4d4d, #d93636);
+        border: none;
+        padding: 10px 20px;
+        width: 100%;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: 0.3s ease;
+    }
 
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #e64545);
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 10px rgba(255, 77, 77, 0.4);
+        }
 
 </style>
 
 <div id="sidebar" class="sidebar">
     @* <div id="toggleSidebar" class="sidebar-toggle" onclick="toggleSidebar()">
-       @*  <i id="toggleIcon" class="bi bi-chevron-left"></i> *@
+    @*  <i id="toggleIcon" class="bi bi-chevron-left"></i> *@
     @*     <span id="toggleIcon" class="toggle-arrow">&lt;&lt;</span>
-    </div> *@ 
+    </div> *@
 
     <div id="sidebarToggle" class="sidebar-toggle-btn">
         <i id="toggleIcon" class="bi bi-chevron-left"></i>
@@ -306,9 +336,17 @@
         <img class="profile-pic" src="~/images/profile.png" />
         <div class="titles">
             <h6 class="mb-0">Wallet App</h6>
-            <small>Ashton Cox</small>
+            <small>@loggedUser</small>
         </div>
+
     </div>
+
+    <form method="post" action="/Account/Logout">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="logout-btn">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </form>
 
     <!-- MENU LIST -->
     @foreach (var item in menuItems)
@@ -347,7 +385,7 @@
     }
 
 </div>
-@* 
+@*
 <script>
     function toggleMenu(id) {
         const menu = document.getElementById("submenu-" + id);
