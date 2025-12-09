@@ -56,3 +56,20 @@ Fully responsive design
 
 Successfully hosted on IIS
 Configured application pool, bindings, and connection strings
+
+<img width="950" height="427" alt="Login" src="https://github.com/user-attachments/assets/c39fd2b8-05fc-4308-a26c-5ebc6469c899" />
+<img width="949" height="458" alt="Register" src="https://github.com/user-attachments/assets/825bc49b-28b7-421a-b02b-34e72d2e0ef4" />
+<img width="952" height="431" alt="Dashboard" src="https://github.com/user-attachments/assets/ce78b0fc-574f-4bb0-95c1-38d54e717b6f" />
+<img width="950" height="472" alt="New Category" src="https://github.com/user-attachments/assets/9dabcc2f-afd5-402c-b86e-124de543ac04" />
+<img width="946" height="460" alt="Catgories" src="https://github.com/user-attachments/assets/34641dcf-63da-48c0-820b-25f9b3a8abe0" />
+<img width="944" height="461" alt="New transaction" src="https://github.com/user-attachments/assets/0b179b78-5d60-4378-aec7-150eb96f92da" />
+<img width="958" height="444" alt="transaction" src="https://github.com/user-attachments/assets/133c454c-8c92-4417-8641-50f50f7e0a7c" />
+
+
+
+
+
+
+
+
+
